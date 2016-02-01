@@ -1,0 +1,32 @@
+{
+  "name": "mongoose-int32",
+  "version": "0.0.1",
+  "author": "Valeri Karpov <val@karpov.io>",
+  "description": "Mongoose type for storing MongoDB int32's (bson type 16)",
+  "devDependencies": {
+    "acquit": "0.4.1",
+    "acquit-ignore": "0.0.3",
+    "acquit-markdown": "0.0.5",
+    "istanbul": "0.4.2",
+    "mocha": "2.0.0",
+    "mongodb": "2.1.x",
+    "mongoose": "4.x"
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "license": "Apache 2.0",
+  "main": "int32.js",
+  "peerDependencies": {
+    "mongoose": "4.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vkarpov15/mongoose-int32.git"
+  },
+  "scripts": {
+    "coverage": "istanbul cover _mocha -- -R spec ./test/*",
+    "docs": "node docs.js",
+    "test": "mocha ./test/*"
+  }
+}

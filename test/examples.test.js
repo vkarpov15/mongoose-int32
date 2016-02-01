@@ -1,26 +1,33 @@
-# mongoose-int32
+'use strict';
 
-Mongoose type for storing MongoDB int32 [(bson type 16)](http://bsonspec.org/spec.html)
+var Int32 = require('../');
+var assert = require('assert');
+var mongodb = require('mongodb');
+var mongoose = require('mongoose');
 
-## Usage
+describe('API', function() {
+  let db;
 
-```javascript
-var Int32 = require('mongoose-int32');
-```
+  before(function(done) {
+    const uri = 'mongodb://localhost:27017/test';
+    mongoose.connect(uri);
+    mongodb.MongoClient.connect(uri, function(error, _db) {
+      assert.ifError(error);
+      db = _db;
+      done();
+    });
+  });
 
+  beforeEach(function(done) {
+    db.dropDatabase(done);
+  });
 
-# API
-
-## It casts to int using `Math.round()`
-
-
-If you declare a field of type `Int32`, this module will use
-`Math.round()` to convert it to an integer so MongoDB can store it
-properly.
-
-
-```javascript
-
+  /**
+   * If you declare a field of type `Int32`, this module will use
+   * `Math.round()` to convert it to an integer so MongoDB can store it
+   * properly.
+   */
+  it('casts to int using `Math.round()`', function(done) {
     const schema = new mongoose.Schema({
       test: Int32
     });
@@ -33,22 +40,19 @@ properly.
       db.collection('tests').findOne(query, function(error, doc) {
         assert.ifError(error);
         assert.ok(doc);
+        // acquit:ignore:start
+        done();
+        // acquit:ignore:end
       });
     });
-  
-```
+  });
 
-## It throws a CastError if outside allowed range
+  /**
+   * MongoDB int32's must be between -2147483648 and 2147483647. If the
+   * rounded value is outside of this range, that's a CastError.
+   */
 
-acquit:ignore:end
-
-
-MongoDB int32's must be between -2147483648 and 2147483647. If the
-rounded value is outside of this range, that's a CastError.
-
-
-```javascript
-
+  it('throws a CastError if outside allowed range', function(done) {
     const Test = mongoose.model('Test');
     const doc = new Test();
     doc.test = 0x7FFFFFFF + 1;
@@ -56,21 +60,18 @@ rounded value is outside of this range, that's a CastError.
     assert.equal(doc.validateSync().errors['test'].name, 'CastError');
     assert.equal(doc.validateSync().errors['test'].message,
       'Cast to Int32 failed for value "2147483648" at path "test"');
-  
-```
+    // acquit:ignore:start
+    done();
+    // acquit:ignore:end
+  });
 
-## It throws a CastError if not a number
+  /**
+   * If the [`Number` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
+   * doesn't recognize the value as a valid number, that's a
+   * [CastError](http://mongoosejs.com/docs/api.html#error-js).
+   */
 
-acquit:ignore:end
-
-
-If the [`Number` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
-doesn't recognize the value as a valid number, that's a
-[CastError](http://mongoosejs.com/docs/api.html#error-js).
-
-
-```javascript
-
+  it('throws a CastError if not a number', function(done) {
     const Test = mongoose.model('Test');
     const doc = new Test();
     doc.test = 'NaN';
@@ -78,15 +79,12 @@ doesn't recognize the value as a valid number, that's a
     assert.equal(doc.validateSync().errors['test'].name, 'CastError');
     assert.equal(doc.validateSync().errors['test'].message,
       'Cast to Int32 failed for value "NaN" at path "test"');
-  
-```
+    // acquit:ignore:start
+    done();
+    // acquit:ignore:end
+  });
 
-## It works with required validators
-
-acquit:ignore:end
-
-```javascript
-
+  it('works with required validators', function(done) {
     const schema = new mongoose.Schema({
       strips: { type: Int32, required: true }
     });
@@ -96,5 +94,8 @@ acquit:ignore:end
     assert.equal(doc.validateSync().errors['strips'].name, 'ValidatorError');
     assert.equal(doc.validateSync().errors['strips'].message,
       'Path `strips` is required.');
-  
-```
+    // acquit:ignore:start
+    done();
+    // acquit:ignore:end
+  });
+});
