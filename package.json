@@ -10,7 +10,6 @@
     "istanbul": "0.4.2",
     "mocha": "2.0.0",
     "mongodb": "2.1.x",
-    "mongodb-version-manager": "1.0.2",
     "mongoose": "4.0.7"
   },
   "engines": {
