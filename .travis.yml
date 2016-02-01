@@ -5,3 +5,9 @@ node_js:
   - "4"
 services:
   - mongodb
+before_script:
+  ./node_modules/.bin/m ${MONGODB_VERSION}
+after_script:
+  ./node_modules/.bin/m kill
+env:
+  - MONGODB_VERSION=3.2.x
