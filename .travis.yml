@@ -6,7 +6,7 @@ node_js:
 services:
   - mongodb
 before_script:
-  ./node_modules/.bin/m ${MONGODB_VERSION}
+  ./node_modules/.bin/m 3.2.x
 after_script:
   ./node_modules/.bin/m kill
 env:
