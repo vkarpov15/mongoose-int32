@@ -40,9 +40,6 @@ properly.
 
 ## It throws a CastError if outside allowed range
 
-acquit:ignore:end
-
-
 MongoDB int32's must be between -2147483648 and 2147483647. If the
 rounded value is outside of this range, that's a CastError.
 
@@ -60,9 +57,6 @@ rounded value is outside of this range, that's a CastError.
 ```
 
 ## It throws a CastError if not a number
-
-acquit:ignore:end
-
 
 If the [`Number` constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number)
 doesn't recognize the value as a valid number, that's a
@@ -82,8 +76,6 @@ doesn't recognize the value as a valid number, that's a
 ```
 
 ## It works with required validators
-
-acquit:ignore:end
 
 ```javascript
 
