@@ -10,7 +10,7 @@
     "istanbul": "0.4.2",
     "mocha": "2.0.0",
     "mongodb": "2.1.x",
-    "mongoose": "4.x"
+    "mongoose": "4.0.7"
   },
   "engines": {
     "node": ">= 4.0.0"
