@@ -94,3 +94,21 @@ doesn't recognize the value as a valid number, that's a
       'Path `strips` is required.');
   
 ```
+
+## It works with queries
+
+```javascript
+
+    const schema = new mongoose.Schema({
+      strips: { type: Int32, required: true }
+    });
+    const Bacon = mongoose.model('Bacon');
+    Bacon.create({ strips: 4 }, function(error) {
+      assert.ifError(error);
+      Bacon.findOne({ strips: { $gt: 2 } }, function(error, bacon) {
+        assert.ifError(error);
+        assert.equal(bacon.strips, 4);
+      });
+    });
+  
+```
