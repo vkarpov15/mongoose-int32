@@ -11,18 +11,6 @@ class Int32 extends mongoose.SchemaType {
   }
 
   /**
-   * Called if `required` validator is set to determine if `val` passes
-   * `required` validation. Not necessary in mongoose >= 4.4.0.
-   *
-   * @param {any} val
-   * @return {Boolean}
-   */
-
-  checkRequired(val) {
-    return val != null;
-  }
-
-  /**
    * Cast the given value to something that MongoDB will store as int32
    *
    * @param {any} val
@@ -44,6 +32,9 @@ class Int32 extends mongoose.SchemaType {
     return _val;
   }
 }
+
+Int32.prototype.$conditionalHandlers =
+  mongoose.Schema.Types.Number.prototype.$conditionalHandlers;
 
 Int32.INT32_BSON_TYPE = 16;
 Int32.INT32_MAX = INT32_MAX;

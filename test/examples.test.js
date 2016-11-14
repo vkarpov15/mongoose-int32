@@ -98,4 +98,21 @@ describe('API', function() {
     done();
     // acquit:ignore:end
   });
+
+  it('works with queries', function(done) {
+    const schema = new mongoose.Schema({
+      strips: { type: Int32, required: true }
+    });
+    const Bacon = mongoose.model('Bacon');
+    Bacon.create({ strips: 4 }, function(error) {
+      assert.ifError(error);
+      Bacon.findOne({ strips: { $gt: 2 } }, function(error, bacon) {
+        assert.ifError(error);
+        assert.equal(bacon.strips, 4);
+        // acquit:ignore:start
+        done();
+        // acquit:ignore:end
+      });
+    });
+  });
 });
