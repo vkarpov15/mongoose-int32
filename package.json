@@ -4,11 +4,11 @@
   "author": "Valeri Karpov <val@karpov.io>",
   "description": "Mongoose type for storing MongoDB int32's (bson type 16)",
   "devDependencies": {
-    "acquit": "0.4.1",
+    "acquit": "0.6.2",
     "acquit-ignore": "0.0.3",
-    "acquit-markdown": "0.0.5",
+    "acquit-markdown": "0.0.10",
     "istanbul": "0.4.2",
-    "mocha": "2.0.0",
+    "mocha": "5.1.1",
     "mongodb": "2.1.x",
     "mongoose": "5.x"
   },
