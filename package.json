@@ -1,6 +1,6 @@
 {
   "name": "mongoose-int32",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Valeri Karpov <val@karpov.io>",
   "description": "Mongoose type for storing MongoDB int32's (bson type 16)",
   "devDependencies": {
