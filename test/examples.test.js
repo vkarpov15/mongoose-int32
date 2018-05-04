@@ -22,6 +22,11 @@ describe('API', function() {
     db.dropDatabase(done);
   });
 
+  after(function() {
+    db.close();
+    mongoose.disconnect();
+  });
+
   /**
    * If you declare a field of type `Int32`, this module will use
    * `Math.round()` to convert it to an integer so MongoDB can store it
