@@ -4,7 +4,7 @@ Mongoose type for storing MongoDB int32 [(bson type 16)](http://bsonspec.org/spe
 
 [![Build Status](https://travis-ci.org/vkarpov15/mongoose-int32.svg?branch=master)](https://travis-ci.org/vkarpov15/mongoose-int32)
 
-## Usage
+# Usage
 
 Requires `mongoose >= 4.4.0`. Do not use with mongoose 3.x.
 
