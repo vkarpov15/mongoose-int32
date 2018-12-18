@@ -6,24 +6,26 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 
 describe('API', function() {
+  let client;
   let db;
 
   before(function(done) {
     const uri = 'mongodb://localhost:27017/test';
-    mongoose.connect(uri);
-    mongodb.MongoClient.connect(uri, function(error, _db) {
+    mongoose.connect(uri, { useNewUrlParser: true });
+    mongodb.MongoClient.connect(uri, { useNewUrlParser: true }, function(error, _client) {
       assert.ifError(error);
-      db = _db;
+      client = _client;
+      db = _client.db();
       done();
     });
   });
 
-  beforeEach(function(done) {
-    db.dropDatabase(done);
+  beforeEach(function() {
+    return mongoose.connection.dropDatabase();
   });
 
   after(function() {
-    db.close();
+    client.close();
     mongoose.disconnect();
   });
 
