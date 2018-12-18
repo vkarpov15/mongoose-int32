@@ -5,12 +5,10 @@
   "description": "Mongoose type for storing MongoDB int32's (bson type 16)",
   "homepage": "http://plugins.mongoosejs.io/plugins/int32",
   "devDependencies": {
-    "acquit": "0.6.2",
-    "acquit-ignore": "0.0.3",
-    "acquit-markdown": "0.0.10",
-    "istanbul": "0.4.2",
-    "mocha": "5.1.1",
-    "mongodb": "2.1.x",
+    "acquit": "1.0.2",
+    "acquit-ignore": "0.1.0",
+    "acquit-markdown": "0.1.0",
+    "mocha": "5.x",
     "mongoose": "5.x"
   },
   "engines": {
