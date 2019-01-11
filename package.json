@@ -8,7 +8,7 @@
     "acquit": "1.x",
     "acquit-ignore": "0.1.0",
     "acquit-markdown": "0.1.0",
-    "mocha": "5.x",
+    "mocha": "5.2.x",
     "mongodb": "3.x",
     "mongoose": "5.4.x"
   },
