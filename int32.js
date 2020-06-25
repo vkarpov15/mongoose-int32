@@ -18,6 +18,8 @@ class Int32 extends mongoose.SchemaType {
    */
 
   cast(val) {
+    if(null === val){ return val }
+
     var _val = Number(val);
     if (isNaN(_val)) {
       throw new mongoose.SchemaType.CastError('Int32',
