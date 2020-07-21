@@ -18,18 +18,21 @@ class Int32 extends mongoose.SchemaType {
    */
 
   cast(val) {
-    if(null === val){ return val }
+    if (val == null) {
+      return val;
+    }
 
     var _val = Number(val);
     if (isNaN(_val)) {
-      throw new mongoose.SchemaType.CastError('Int32',
-        val + ' is not a number');
+      var msg = val + ' is not a number';
+      throw new mongoose.Error(msg);
     }
     _val = Math.round(_val);
     if (_val < INT32_MIN || _val > INT32_MAX) {
-      throw new mongoose.SchemaType.CastError('Int32', val +
+      var msg = val +
         ' is outside of the range of valid BSON int32s: ' + INT32_MAX + ' - ' +
-        INT32_MIN);
+        INT32_MIN;
+      throw new mongoose.Error(msg);
     }
     return _val;
   }
