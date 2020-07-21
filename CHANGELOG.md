@@ -1,3 +1,7 @@
+0.4.1 / 2020-07-21
+==================
+ * fix: correctly format error messages for Mongoose 5.9 #8
+
 0.4.0 / 2020-06-25
 ==================
  * fix: handle null values #8 [russelgauthier](https://github.com/russelgauthier)
