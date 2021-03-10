@@ -10,5 +10,5 @@ Requires `mongoose >= 4.4.0`. Do not use with mongoose 3.x.
 
 ```javascript
 const mongoose = require("mongoose");
-const Int32 = require("../").loadType(mongoose);
+const Int32 = require("mongoose-int32").loadType(mongoose);
 ```
