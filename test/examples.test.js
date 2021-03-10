@@ -1,9 +1,9 @@
 'use strict';
 
-var Int32 = require('../');
-var assert = require('assert');
-var mongodb = require('mongodb');
-var mongoose = require('mongoose');
+const assert = require('assert');
+const mongodb = require('mongodb');
+const mongoose = require('mongoose');
+const Int32 = require('../').loadType(mongoose);
 
 describe('API', function() {
   let client;
