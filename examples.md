@@ -9,22 +9,20 @@ properly.
 
 
 ```javascript
+const schema = new mongoose.Schema({
+  test: Int32
+});
+const Test = mongoose.model('Test', schema);
 
-    const schema = new mongoose.Schema({
-      test: Int32
-    });
-    const Test = mongoose.model('Test', schema);
-
-    Test.create({ test: 1.49 }, function(error, doc) {
-      assert.equal(doc.test, 1);
-      // Int32.INT32_BSON_TYPE=16, see http://bsonspec.org/spec.html
-      const query = { test: { $type: Int32.INT32_BSON_TYPE, $eq: 1 } };
-      db.collection('tests').findOne(query, function(error, doc) {
-        assert.ifError(error);
-        assert.ok(doc);
-      });
-    });
-  
+Test.create({ test: 1.49 }, function(error, doc) {
+  assert.equal(doc.test, 1);
+  // Int32.INT32_BSON_TYPE=16, see http://bsonspec.org/spec.html
+  const query = { test: { $type: Int32.INT32_BSON_TYPE, $eq: 1 } };
+  db.collection('tests').findOne(query, function(error, doc) {
+    assert.ifError(error);
+    assert.ok(doc);
+  });
+});
 ```
 
 ## It throws a CastError if outside allowed range
@@ -35,15 +33,13 @@ rounded value is outside of this range, that's a CastError.
 
 
 ```javascript
-
-    const Test = mongoose.model('Test');
-    const doc = new Test();
-    doc.test = 0x7FFFFFFF + 1;
-    assert.ok(doc.validateSync() instanceof mongoose.Error);
-    assert.equal(doc.validateSync().errors['test'].name, 'CastError');
-    assert.equal(doc.validateSync().errors['test'].message,
-      'Cast to Int32 failed for value "2147483648" at path "test"');
-  
+const Test = mongoose.model('Test');
+const doc = new Test();
+doc.test = 0x7FFFFFFF + 1;
+assert.ok(doc.validateSync() instanceof mongoose.Error);
+assert.equal(doc.validateSync().errors['test'].name, 'CastError');
+assert.equal(doc.validateSync().errors['test'].message,
+  'Cast to Int32 failed for value "2147483648" at path "test"');
 ```
 
 ## It throws a CastError if not a number
@@ -55,47 +51,41 @@ doesn't recognize the value as a valid number, that's a
 
 
 ```javascript
-
-    const Test = mongoose.model('Test');
-    const doc = new Test();
-    doc.test = 'NaN';
-    assert.ok(doc.validateSync() instanceof mongoose.Error);
-    assert.equal(doc.validateSync().errors['test'].name, 'CastError');
-    assert.equal(doc.validateSync().errors['test'].message,
-      'Cast to Int32 failed for value "NaN" at path "test"');
-  
+const Test = mongoose.model('Test');
+const doc = new Test();
+doc.test = 'NaN';
+assert.ok(doc.validateSync() instanceof mongoose.Error);
+assert.equal(doc.validateSync().errors['test'].name, 'CastError');
+assert.equal(doc.validateSync().errors['test'].message,
+  'Cast to Int32 failed for value "NaN" at path "test"');
 ```
 
 ## It works with required validators
 
 ```javascript
-
-    const schema = new mongoose.Schema({
-      strips: { type: Int32, required: true }
-    });
-    const Bacon = mongoose.model('Bacon', schema);
-    const doc = new Bacon();
-    assert.ok(doc.validateSync() instanceof mongoose.Error);
-    assert.equal(doc.validateSync().errors['strips'].name, 'ValidatorError');
-    assert.equal(doc.validateSync().errors['strips'].message,
-      'Path `strips` is required.');
-  
+const schema = new mongoose.Schema({
+  strips: { type: Int32, required: true }
+});
+const Bacon = mongoose.model('Bacon', schema);
+const doc = new Bacon();
+assert.ok(doc.validateSync() instanceof mongoose.Error);
+assert.equal(doc.validateSync().errors['strips'].name, 'ValidatorError');
+assert.equal(doc.validateSync().errors['strips'].message,
+  'Path `strips` is required.');
 ```
 
 ## It works with queries
 
 ```javascript
-
-    const schema = new mongoose.Schema({
-      strips: { type: Int32, required: true }
-    });
-    const Bacon = mongoose.model('Bacon');
-    Bacon.create({ strips: 4 }, function(error) {
-      assert.ifError(error);
-      Bacon.findOne({ strips: { $gt: 2 } }, function(error, bacon) {
-        assert.ifError(error);
-        assert.equal(bacon.strips, 4);
-      });
-    });
-  
+const schema = new mongoose.Schema({
+  strips: { type: Int32, required: true }
+});
+const Bacon = mongoose.model('Bacon');
+Bacon.create({ strips: 4 }, function(error) {
+  assert.ifError(error);
+  Bacon.findOne({ strips: { $gt: 2 } }, function(error, bacon) {
+    assert.ifError(error);
+    assert.equal(bacon.strips, 4);
+  });
+});
 ```

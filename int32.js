@@ -47,18 +47,24 @@ Int32.INT32_MIN = INT32_MIN;
 
 Int32.instance = 'Int32';
 
+module.exports = Int32;
+
 module.exports.loadType = function(mongoose) {
-	if (mongoose.Schema && typeof mongoose.Schema.Types === 'object') {
-		mongoose.Schema.Types.Int32 = Int32;
-	}
+  if (mongoose == null) {
+    mongoose = require('mongoose');
+  }
 
-	if (typeof mongoose.SchemaTypes === 'object') {
-		mongoose.SchemaTypes.Int32 = Int32;
-	}
+  if (mongoose.Schema && typeof mongoose.Schema.Types === 'object') {
+	  mongoose.Schema.Types.Int32 = Int32;
+  }
 
-	if (typeof mongoose.Types === 'object') {
-		mongoose.Types.Int32 = Int32;
-	}
+  if (typeof mongoose.SchemaTypes === 'object') {
+	  mongoose.SchemaTypes.Int32 = Int32;
+  }
 
-	return Int32;
+  if (typeof mongoose.Types === 'object') {
+	  mongoose.Types.Int32 = Int32;
+  }
+
+  return Int32;
 };
