@@ -1,3 +1,7 @@
+0.5.0 / 2021-05-14
+==================
+ * BREAKING CHANGE: export a `loadType` function that takes a Mongoose instance for compatibility with mongoose-float
+
 0.4.1 / 2020-07-21
 ==================
  * fix: correctly format error messages for Mongoose 5.9 #8
