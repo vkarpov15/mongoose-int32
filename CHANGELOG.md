@@ -1,3 +1,7 @@
+0.6.0 / 2022-01-05
+==================
+ * feat: add support for Mongoose 6 [bvgusak](https://github.com/bvgusak)
+
 0.5.0 / 2021-05-14
 ==================
  * BREAKING CHANGE: export a `loadType` function that takes a Mongoose instance for compatibility with mongoose-float
