@@ -39,7 +39,7 @@ doc.test = 0x7FFFFFFF + 1;
 assert.ok(doc.validateSync() instanceof mongoose.Error);
 assert.equal(doc.validateSync().errors['test'].name, 'CastError');
 assert.equal(doc.validateSync().errors['test'].message,
-  'Cast to Int32 failed for value "2147483648" at path "test"');
+  'Cast to Int32 failed for value "2147483648" (type number) at path "test"');
 ```
 
 ## It throws a CastError if not a number
@@ -57,7 +57,7 @@ doc.test = 'NaN';
 assert.ok(doc.validateSync() instanceof mongoose.Error);
 assert.equal(doc.validateSync().errors['test'].name, 'CastError');
 assert.equal(doc.validateSync().errors['test'].message,
-  'Cast to Int32 failed for value "NaN" at path "test"');
+  'Cast to Int32 failed for value "NaN" (type string) at path "test"');
 ```
 
 ## It works with required validators
