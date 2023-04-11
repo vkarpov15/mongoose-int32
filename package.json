@@ -9,8 +9,8 @@
     "acquit-ignore": "0.1.0",
     "acquit-markdown": "0.1.0",
     "mocha": "5.x",
-    "mongodb": "4.x",
-    "mongoose": "6.x"
+    "mongodb": "^4.15.0",
+    "mongoose": "^6.10.5"
   },
   "engines": {
     "node": ">= 4.0.0"
