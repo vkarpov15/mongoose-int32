@@ -12,3 +12,13 @@ Requires `mongoose >= 4.4.0`. Do not use with mongoose 3.x.
 const mongoose = require("mongoose");
 const Int32 = require("mongoose-int32").loadType(mongoose);
 ```
+
+
+With Typescript
+
+```typescript
+import mongoose from 'mongoose';
+import { loadType } from 'mongoose-int32';
+
+const Int32 = loadType(mongoose);
+```
